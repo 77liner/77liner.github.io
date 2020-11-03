@@ -1,0 +1,77 @@
+---
+title: "instacart"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(lubridate)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Barplot
+
+```{r}
+data(instacart) 
+
+instacart %>% 
+  count(aisle) %>% 
+  filter(n > 20000) %>% 
+  mutate(
+    aisle = factor(aisle),
+    aisle = fct_reorder(aisle, n)
+  ) %>% 
+   plot_ly(
+    x = ~aisle, y = ~n, color = ~aisle, 
+    type = "bar", colors = "viridis") %>% 
+  layout(
+    xaxis = list(title = "Aisles"),
+    yaxis = list(title = "Count"),
+    title = "Aisles with more than 20000 items ordered"
+  )
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+ 
+### Boxplot
+
+```{r}
+instacart %>% 
+  filter(aisle == "fresh fruits") %>% 
+  filter(product_name %in% c("Apples","Ataulfo Mango","Asian Pears","Avocado","Bag of Lemons")) %>% 
+  plot_ly(
+    y = ~order_hour_of_day, x = ~product_name, color = ~product_name, 
+    type = "box", colors = "viridis") %>%
+  layout(
+    xaxis = list(title = "Products' name"),
+    yaxis = list(title = "Order-hour of the day"),
+    title = "Order-hour for some fresh fruits"
+  )
+```
+
+### Scatterplot
+
+```{r}
+instacart %>% 
+  filter(aisle == "fresh fruits") %>% 
+  filter(product_name %in% c("Apples","Ataulfo Mango","Asian Pears","Avocado","Bag of Lemons")) %>% 
+  mutate(text_label = str_c("Days: ", days_since_prior_order, "\nOrder-hour: ", order_hour_of_day)) %>%
+  plot_ly(
+    x = ~days_since_prior_order, y = ~order_hour_of_day, color = ~product_name, text = ~text_label,
+    alpha = .5, type = "scatter", mode = "markers") %>% 
+  layout(
+    xaxis = list(title = "Days since prior orde"),
+    yaxis = list(title = "Order hour of day"),
+    title = "The distribution of order for some fresh fruits"
+  )
+```
+

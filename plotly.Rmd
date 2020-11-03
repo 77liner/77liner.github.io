@@ -16,7 +16,7 @@ library(lubridate)
 
 # Plots
 
-## Bar plot
+## Barplot
 ```{r}
 data(instacart) 
 
@@ -37,7 +37,7 @@ instacart %>%
   )
 ```
 
-## boxplot
+## Boxplot
 
 ```{r}
 instacart %>% 
