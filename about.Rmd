@@ -1,0 +1,25 @@
+---
+title: "resume"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+# Academic experience 
+
+- Biostatistics (Master of Science), [Columbia University](https://www.columbia.edu/), U.S.
+- Tea Science (Bachelor of Science), [Zhejiang University](http://www.zju.edu.cn/), China
+
+# Professional experience
+-Study on the Prevalence of Systemic Lupus Erythematosus and Gout among Residents in Yiwu.(2019)
+
+-A Note on Linear Model Implementation for Multifactor Dimensionality Reduction.(2019)
+
+-Determination of Great Tang Fu Brick-Tea Composition and Research and Development of Fu brick-tea Clearness.(2018)
+
+-Study on Morphological and Propagation Adaptability of Plant Fruit.(2017)
+
+
+
